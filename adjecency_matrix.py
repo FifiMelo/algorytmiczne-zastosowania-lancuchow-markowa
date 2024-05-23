@@ -15,5 +15,5 @@ if __name__ == '__main__':
     adjacency_matrix_file_name = input()
     print("Please wait...")
     adjacency_matrix = cryptography.adjecency_matrix(text)
-    np.save(f"{adjacency_matrix_file_name}.npy", adjacency_matrix)
+    np.save(f"./temp/{adjacency_matrix_file_name}.npy", adjacency_matrix)
     print("Done!")

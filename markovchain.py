@@ -1,7 +1,8 @@
 from permutation import Permutation, create_identity
 import random
 import copy
-
+import numpy as np
+from cryptography import chars, index, encode_text
 
 class MarkovChain:
     """
@@ -28,3 +29,21 @@ class MarkovChain:
     
     def get_state(self) -> Permutation:
         return self.state
+    
+    def load_encrypted_text(self, text: str) -> None:
+        self.encrypted_text = text
+    
+    def load_adjacecny_matrix(self, filename: str) -> None:
+        self.adjacency_matrix = np.load(filename)
+
+    def LOSS(self, permutation: Permutation) -> float:
+        text = encode_text(self.encrypted_text, permutation)
+        L = 0
+        for i in range(len(text) - 1):
+            L += self.adjacency_matrix[index(text[i]), index(text[i + 1])]
+        return L
+    
+    
+
+
+

@@ -15,7 +15,6 @@ def index(letter: str) -> int:
 def adjecency_matrix(text: str) -> np.ndarray:
     matrix = np.zeros((len(chars), len(chars)), dtype = np.float32)
     for i in range(len(text) - 1):
-
         matrix[index(text[i])][index(text[i + 1])] += 1
     for i in range(len(chars)):
         S = sum(matrix[i])
@@ -23,14 +22,6 @@ def adjecency_matrix(text: str) -> np.ndarray:
             matrix[i] += 1
             matrix[i] /= S
     return np.log(matrix)
-
-def likelihood(adjacency_matrix: np.ndarray, text: str) -> float:
-    L = 0
-    for i in range(len(text) - 1):
-        L += adjacency_matrix[index(text[i]), index(text[i + 1])]
-    return L
-
-
 
 
 
