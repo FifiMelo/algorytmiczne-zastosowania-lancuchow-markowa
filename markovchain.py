@@ -16,7 +16,7 @@ class MarkovChain:
     def propose_move(self) -> Permutation:
         indexes = random.sample(range(self.state.n), 2)
         self.new_state = copy.deepcopy(self.state)
-        self.state.modify(indexes[0], indexes[1])
+        self.new_state.modify(indexes[0], indexes[1])
         return self.new_state
     
     def accept_proposal(self) -> None:
@@ -25,3 +25,6 @@ class MarkovChain:
         
     def reject_proposal(self) -> None:
         self.new_state = None
+    
+    def get_state(self) -> Permutation:
+        return self.state
