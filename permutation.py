@@ -33,8 +33,8 @@ class Permutation:
         return Permutation(out)
     
     def modify(self, index1: int, index2: int) -> None:
-        self.indexes[index1] = index2
-        self.indexes[index2] = index1
+        self.indexes[index2], self.indexes[index1] = self(index1), self(index2)
+        
     
     def __call__(self, k: int)->int:
         return self.indexes[k]

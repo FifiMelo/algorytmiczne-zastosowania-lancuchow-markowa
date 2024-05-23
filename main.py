@@ -9,15 +9,15 @@ def main():
     text = open("text.txt", encoding="utf8").read().lower()
     encrypted_text = cryptography.encode_text(text, permutation.create_random_permutation())
     adjacency_matrix = np.load("adjacency_matrix.npy")
-    beta = 1
+    beta = 0.2
 
-    for i in range(2000):
+    for i in range(3000):
 
         # obliczamy likelihood przed ruchem
         decrypted_text1 = cryptography.encode_text(encrypted_text, MCMC.get_state())
         L1 = cryptography.likelihood(adjacency_matrix, decrypted_text1)
         print(L1)
-        
+
         MCMC.propose_move()
 
         # obliczmy likelihood proponowanego ruchu
