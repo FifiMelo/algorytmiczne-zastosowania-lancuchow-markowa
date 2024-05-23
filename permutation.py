@@ -1,4 +1,4 @@
-
+import random
 
 
 
@@ -38,8 +38,13 @@ class Permutation:
     
     def __call__(self, k: int)->int:
         return self.indexes[k]
+
     
-def create_identity(n: int) -> Permutation:
+def create_identity(n: int = len(Permutation.chars)) -> Permutation:
     return Permutation([i for i in range(n)])
 
+def create_random_permutation(n: int = len(Permutation.chars)) -> Permutation:
+    L = list(range(n))
+    random.shuffle(L)
+    return Permutation(L)
 
