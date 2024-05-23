@@ -1,10 +1,9 @@
 
 
-def create_identity(n):
-    return Permutation([i for i in range(n)])
 
 
-class Permutation(object):
+
+class Permutation:
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789 ,.?!:;'
     def __init__(self, indexes: list[int]):
         self.indexes = indexes
@@ -20,13 +19,24 @@ class Permutation(object):
                 out.append(f"{i} -> {self.indexes[i]}")
         return "\n".join(out)
     
-    def __mul__(self, other):
+    def __repr__(self) -> str:
+        return f"Permutation(n = {self.n})"
+    
+    def __mul__(self, other: 'Permutation') -> 'Permutation':
         assert self.n == other.n
         return Permutation([self.indexes[other.indexes[i]] for i in range(self.n)])
 
-    def inverse(self):
+    def inverse(self) -> 'Permutation':
         out = [0 for i in range(self.n)]
         for i in range(self.n):
             out[self.indexes[i]] = i
         return Permutation(out)
     
+    def modify(self, index1: int, index2: int) -> None:
+        self.indexes[index1] = index2
+        self.indexes[index2] = index1
+    
+def create_identity(n: int) -> Permutation:
+    return Permutation([i for i in range(n)])
+
+
