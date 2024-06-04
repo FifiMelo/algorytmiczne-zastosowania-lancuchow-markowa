@@ -36,7 +36,7 @@ class MarkovChain:
     def load_adjacecny_matrix(self, filename: str) -> None:
         self.adjacency_matrix = np.load(filename)
 
-    def LOSS(self, permutation: Permutation) -> float:
+    def LogLikelihood(self, permutation: Permutation) -> float:
         text = encode_text(self.encrypted_text, permutation)
         L = 0
         for i in range(len(text) - 1):

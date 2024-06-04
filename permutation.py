@@ -4,7 +4,9 @@ import random
 
 
 class Permutation:
-    chars = 'abcdefghijklmnopqrstuvwxyz0123456789 ,.?!:;'
+    #chars = 'abcdefghijklmnopqrstuvwxyz0123456789 ,.?!:;'
+    chars='aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż ,.?!:;' #polskie teksty
+
     def __init__(self, indexes: list[int]):
         self.indexes = indexes
         self.n = len(self.indexes)
