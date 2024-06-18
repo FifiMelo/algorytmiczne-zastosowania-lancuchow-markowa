@@ -12,9 +12,8 @@ def main():
     print(encrypted_text)
 
     MCMC = markovchain.MarkovChain(permutation.create_random_permutation())
-    MCMC.load_adjacecny_matrix("./temp/60_adjacency_matrix.npy")
+    MCMC.load_adjacecny_matrix("./temp/5_adjacency_matrix.npy")
     MCMC.load_encrypted_text(encrypted_text)
-    MCMC.load_distribution_vector("./temp/60_distribution_vector.npy")
 
     T=5300  #np. 87300 dla polskiego najdłuszego
     beta = 1/T 
@@ -23,7 +22,7 @@ def main():
         #T=1-(i+1)/4002
         #beta = 1/T                       #1- (k+1)/kmax )
         # obliczamy likelihood przed ruchem
-        L1 = MCMC.LOSS(MCMC.get_state())
+        L1 = MCMC.LogLikelihood(MCMC.get_state())
         if i%100 == 0:
             print(f"Iterations: {i}\nLogLikelihood: {L1}")
 
